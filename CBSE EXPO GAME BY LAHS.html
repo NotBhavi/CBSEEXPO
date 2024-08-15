@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://cbsegameexpo24lahs.tiiny.site/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE EXPO GAME BY LAHS</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            touch-action: none;
+        }
+        #game-container {
+            width: 300px;
+            height: 500px;
+            background-color: #8B4513;
+            border: 2px solid #4285f4;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        #lane {
+            width: 80%;
+            height: 100%;
+            background-color: #DEB887;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        #lane::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background-color: #F4A460;
+            transform: translateX(-50%);
+        }
+        #ball {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ea4335);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+            left: 135px;
+            cursor: grab;
+            z-index: 10;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .pin {
+            width: 15px;
+            height: 25px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            z-index: 5;
+            transition: transform 0.2s;
+        }
+        .pin::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #ff4444;
+            border-radius: 50%;
+        }
+        #score, #throw-count, #frame-score {
+            position: absolute;
+            left: 10px;
+            font-size: 18px;
+            color: #ffffff;
+            z-index: 20;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        #score { top: 10px; }
+        #throw-count { top: 40px; }
+        #frame-score { top: 70px; }
+        #power-meter {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 20px;
+            height: 100px;
+            background-color: #ddd;
+            z-index: 20;
+        }
+        #power-bar {
+            width: 100%;
+            height: 0%;
+            background-color: #4CAF50;
+            transition: height 0.1s;
+        }
+    </style>
+<script type="text/javascript" src="./CBSE EXPO GAME BY LAHS_files/ad-script.js.download"></script><script defer="" data-domain="cbsegameexpo24lahs.tiiny.site" src="./CBSE EXPO GAME BY LAHS_files/plausible.js.download"></script><style class="noam-global">
+    .noam-dialog-parent-no-scroll{
+      overflow: hidden !important;
+    }
+    </style><style class="noam-font"><br>    @font-face {<br>      font-family: 'noam-Hind';<br>      src: url(chrome-extension://gleingaommnchbpcoddbjmgdlflkpmdh/static/fonts/Hind-Regular.ttf) format('truetype');<br>      font-weight: normal;<br>      font-style: normal;<br>    }<br><br>    @font-face {<br>      font-family: 'noam-Hind';<br>      src: url('chrome-extension://gleingaommnchbpcoddbjmgdlflkpmdh/static/fonts/Hind-Medium.ttf') format('truetype');<br>      font-weight: 500;<br>      font-style: normal;<br>    }<br><br>    @font-face {<br>      font-family: 'noam-Hind';<br>      src: url('chrome-extension://gleingaommnchbpcoddbjmgdlflkpmdh/static/fonts/Hind-SemiBold.ttf') format('truetype');<br>      font-weight: 600;<br>      font-style: normal;<br>    }<br>    </style><script src="chrome-extension://gleingaommnchbpcoddbjmgdlflkpmdh/static/libs/iconfont.js" noam-script="t"></script></head>
+<body noam-version="1.0.4" noam-id="gleingaommnchbpcoddbjmgdlflkpmdh" style="margin-bottom: 55px !important;"><div style="position: fixed !important; bottom: 0% !important; width: 100% !important; height: 55px !important; z-index: 9999 !important;"><a href="https://tiiny.host/?ref=free-site">
+    <div style="padding: 10px !important; background: rgb(220,137,232) !important;
+background: linear-gradient(141deg, rgba(220,137,232,1) 0%, rgba(144,64,204,1) 100%) !important; height: 55px; text-align: center">
+      <img style="height: 35px !important; width: auto !important;" src="./CBSE EXPO GAME BY LAHS_files/ad.png" alt="tiiny.host">
+    </div>
+  </a></div><svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;"><symbol id="icon-fill-global_check" viewBox="0 0 1024 1024"><path d="M128 512a384 384 0 1 0 768 0A384 384 0 0 0 128 512z" fill="#DCA211"></path><path d="M720 403.2l-211.2 246.4c-3.2 3.2-3.2 3.2-6.4 3.2 0 3.2-3.2 6.4-3.2 6.4-6.4 6.4-16 9.6-22.4 9.6-6.4 0-16-3.2-19.2-6.4L313.6 537.6c-12.8-12.8-16-32-3.2-44.8 12.8-12.8 32-16 44.8-3.2l121.6 102.4L678.4 358.4c12.8-12.8 32-16 44.8-3.2 6.4 16 6.4 35.2-3.2 48z" fill="#FFFFFF"></path></symbol><symbol id="icon-line-global_date" viewBox="0 0 1024 1024"><path d="M888.256 211.392h-173.312v-41.664a41.728 41.728 0 1 0-83.456 0v41.664H386.56v-39.552a43.84 43.84 0 1 0-87.68 0v39.552H125.632a34.432 34.432 0 0 0-34.624 34.048v646.912c0 18.688 15.552 34.048 34.624 34.048H888.32c19.072 0 34.688-15.36 34.688-34.048V245.44a34.432 34.432 0 0 0-34.688-34.048z" fill="#2C2D3A"></path><path d="M594.24 688H280.96a34.048 34.048 0 0 1 0-68.032h313.28a34.048 34.048 0 1 1 0 68.096zM732.864 517.76h-451.84a34.048 34.048 0 0 1 0-68.032h451.84a34.048 34.048 0 0 1 0 68.096z" fill="#B5AFFF"></path></symbol><symbol id="icon-line-global_money" viewBox="0 0 1024 1024"><path d="M512 64a448 448 0 1 0 0.128 896.128A448 448 0 0 0 512 64z" fill="#2C2D3A"></path><path d="M675.84 361.984L595.776 442.112h34.944a34.944 34.944 0 0 1 0 69.888H546.944v44.16h84.224a34.944 34.944 0 0 1 0 69.888H546.944v96.64a34.944 34.944 0 0 1-69.888 0v-96.64H392.832a34.944 34.944 0 0 1 0-69.888h84.224V512H392.832a34.944 34.944 0 0 1 0-69.888h34.88L347.584 361.984a35.328 35.328 0 0 1 0-49.28 35.328 35.328 0 0 1 49.28 0l114.624 115.008 114.56-114.56a35.328 35.328 0 0 1 49.28 0 34.24 34.24 0 0 1 0.576 48.832z" fill="#B5AFFF"></path></symbol><symbol id="icon-fill-global_check2" viewBox="0 0 1024 1024"><path d="M128 512a384 384 0 1 0 768 0A384 384 0 0 0 128 512z" fill="#6840EA"></path><path d="M720 403.2l-211.2 246.4c-3.2 3.2-3.2 3.2-6.4 3.2 0 3.2-3.2 6.4-3.2 6.4-6.4 6.4-16 9.6-22.4 9.6-6.4 0-16-3.2-19.2-6.4L313.6 537.6c-12.8-12.8-16-32-3.2-44.8 12.8-12.8 32-16 44.8-3.2l121.6 102.4L678.4 358.4c12.8-12.8 32-16 44.8-3.2 6.4 16 6.4 35.2-3.2 48z" fill="#FFFFFF"></path></symbol><symbol id="icon-line-global_program" viewBox="0 0 1024 1024"><path d="M825.984 97.28h-69.568v99.904c0 17.984-7.552 35.2-20.992 47.872a71.68 71.68 0 0 1-50.368 19.2H337.152c-38.464-0.256-69.568-30.208-69.568-67.072v-99.84H197.568C159.168 97.28 128 127.04 128 163.84v691.84c0 17.664 7.36 34.56 20.352 47.104 13.056 12.48 30.72 19.52 49.28 19.52h628.8c38.336-0.256 69.312-29.952 69.568-66.56V163.84c0-17.728-7.36-34.752-20.48-47.232a71.232 71.232 0 0 0-49.536-19.392z" fill="#2C2D3A"></path><path d="M680.512 480L488.96 680.192a35.072 35.072 0 0 1-25.728 10.816 35.072 35.072 0 0 1-25.792-10.816l-93.44-100.288a32.448 32.448 0 0 1-10.752-34.56 34.368 34.368 0 0 1 28.416-23.68c13.44-1.856 26.88 3.968 34.24 14.976L463.68 609.28l165.312-172.992a36.416 36.416 0 0 1 48.832 0c12.16 11.904 13.312 30.528 2.688 43.712z" fill="#B5AFFF"></path><path d="M685.056 86.464a45.568 45.568 0 0 0-40.256-22.4H385.536a45.568 45.568 0 0 0-40.256 22.4 41.856 41.856 0 0 0-6.784 22.912v43.264c0 11.52 4.8 22.464 13.248 30.592a46.208 46.208 0 0 0 32 12.672h257.024a46.208 46.208 0 0 0 31.936-12.672 42.304 42.304 0 0 0 13.248-30.592V109.44a43.968 43.968 0 0 0-0.896-22.912" fill="#2C2D3A"></path></symbol><symbol id="icon-fill-global_PDF" viewBox="0 0 1024 1024"><path d="M178.944 112.768h460.288l219.136 227.84v551.488a24.96 24.96 0 0 1-24.576 25.216H178.944a24.96 24.96 0 0 1-24.576-25.216V138.048a24.96 24.96 0 0 1 24.576-25.28z" fill="#FF4867"></path><path d="M639.232 112.768v202.56a24.96 24.96 0 0 0 24.576 25.216h194.56L639.232 112.768z" fill="#FF97A9"></path><path d="M579.584 640.832a707.84 707.84 0 0 0-109.888-37.76c-32.448 22.016-87.68 55.04-130.048 55.04-26.368 0-45.312-13.632-52.224-37.312-5.312-19.52-0.832-32.96 4.864-40.32 11.2-15.68 34.24-23.68 68.736-23.68 27.968 0 63.36 5.12 102.912 14.912 25.472-18.688 51.392-40.256 74.432-63.104-10.24-49.92-21.376-130.816 6.976-168.064 14.08-17.856 35.456-23.68 61.312-15.744 28.352 8.448 39.168 26.24 42.432 40.256 11.968 48.64-42.432 114.24-79.104 152.832 8.192 33.344 18.944 68.48 32.064 100.8 52.608 24.064 115.2 60.16 122.24 99.392 2.88 13.568-1.216 26.24-11.968 37.248-9.28 7.872-19.072 12.48-29.44 12.48-43.648 0-82.752-76.928-103.296-126.976z m64.064 42.112c9.6 22.016 18.752 32.384 23.616 32.384 0.704 0 1.792-0.384 3.2-1.728 1.856-1.984 1.856-3.328 1.536-4.544-0.96-5.76-9.088-15.296-28.352-26.112zM366.72 594.048c-15.36 0-19.584 3.84-20.864 5.632-0.32 0.576-1.472 2.304-0.32 6.72 0.896 3.84 3.456 7.872 11.392 7.872 9.984 0 24.384-5.76 41.152-16.128a144.384 144.384 0 0 0-31.36-4.096z m177.792-10.048a259.136 259.136 0 0 1-8-26.24c-6.4 5.696-12.928 11.264-19.52 16.64 9.152 2.688 18.688 6.08 27.52 9.6z m37.312-199.04a9.536 9.536 0 0 0-7.68 3.52c-6.016 7.872-6.72 27.712-2.048 53.056 17.792-19.648 27.52-37.632 25.088-47.296-0.32-1.408-1.344-5.76-9.664-8.192a19.008 19.008 0 0 0-5.76-1.088z" fill="#FFFFFF"></path></symbol><symbol id="icon-line-global_payment" viewBox="0 0 1024 1024"><path d="M107.2 159.872c-35.328 0-64 28.288-64 63.168v126.272h896V223.04a63.552 63.552 0 0 0-64-63.168h-768z m448 252.608h-512v378.944c0 34.88 28.672 63.168 64 63.168h384a311.68 311.68 0 0 1-64-189.44c0-103.36 50.24-195.072 128-252.672z" fill="#2C2D3A"></path><path d="M747.2 917.76c-141.376 0-256-113.088-256-252.608s114.624-252.672 256-252.672c141.44 0 256 113.152 256 252.672 0 139.52-114.56 252.608-256 252.608z" fill="#2C2D3A"></path><path d="M642.24 704.128l44.8 44.16a32.192 32.192 0 0 0 45.312 0l112.96-111.36a31.36 31.36 0 0 0 0-44.736 32.32 32.32 0 0 0-45.248 0l-90.368 89.152-22.208-21.888a32.32 32.32 0 0 0-45.248 0 31.296 31.296 0 0 0 0 44.672z" fill="#B5AFFF"></path></symbol><symbol id="icon-line-global_credit" viewBox="0 0 1024 1024"><path d="M64 823.424c0 29.76 23.296 53.76 52.032 53.76h791.936c28.8 0 52.032-24.064 52.032-53.76V474.112H64v349.312zM907.968 192H116.032A52.928 52.928 0 0 0 64 245.76V393.6h896V245.76a52.864 52.864 0 0 0-52.032-53.76z" fill="#2C2D3A"></path><path d="M726.272 635.328h142.848l-25.984 120.96h-142.848z" fill="#B5AFFF"></path></symbol><symbol id="icon-line-global_setUp2" viewBox="0 0 1024 1024"><path d="M704 160H320a32 32 0 0 0-27.52 15.744l-192.064 326.4a32 32 0 0 0 0 32.512l192 326.4A32 32 0 0 0 320 876.8h384a32 32 0 0 0 27.584-15.744l192-326.4a32 32 0 0 0 0-32.512l-192-326.4a32 32 0 0 0-27.52-15.744z m-18.304 64l173.184 294.336-173.184 294.464H338.304L165.056 518.4l173.248-294.4h347.392z"></path><path d="M512 390.4a128 128 0 1 0 0 256 128 128 0 0 0 0-256z m0 64a64 64 0 1 1 0 128 64 64 0 0 1 0-128z"></path></symbol><symbol id="icon-line-global_manageAccount" viewBox="0 0 1024 1024"><path d="M493.12 531.584a41.664 41.664 0 0 0-7.04 0.64l-13.696-0.128c-135.744 1.216-235.264 29.76-334.72 97.024a43.648 43.648 0 0 0-19.264 36.032v95.552l0.448 7.872A73.6 73.6 0 0 0 192 834.304h294.208l6.208-0.512a40.192 40.192 0 0 0-6.208-79.744H221.696l-4.864-0.512a22.4 22.4 0 0 1-17.536-21.888v-51.52l14.4-6.4 17.28-9.152c69.12-34.752 142.848-51.2 237.696-53.12l21.952-0.256 1.088 0.128 6.72-0.448a39.936 39.936 0 0 0 34.112-39.36l-0.512-6.336-1.536-6.144a39.936 39.936 0 0 0-30.72-26.816l-5.376-0.512-1.28-0.128z m166.208 20.608l107.136 1.92a48 48 0 0 1 32 12.992l4.864 5.312 3.84 5.76 49.216 85.12a48 48 0 0 1 5.312 34.176l-2.048 6.912-2.944 6.336-52.096 93.248a48 48 0 0 1-27.392 22.336l-7.168 1.664-7.04 0.64-111.808 0.64a48 48 0 0 1-32.832-12.8l-5.056-5.312-3.968-5.824-48.896-84.8a48 48 0 0 1-5.12-34.88l2.112-7.04 3.136-6.336L617.024 576a48 48 0 0 1 27.968-21.76l7.232-1.6 7.04-0.384z m69.952 78.72l-39.808 0.256a28.928 28.928 0 0 0-18.112 6.528l-3.392 3.392-3.072 4.288-20.224 34.304a28.928 28.928 0 0 0-3.584 19.328l1.28 4.8 2.24 4.864 17.152 29.76a28.928 28.928 0 0 0 15.04 12.672l4.736 1.28 5.376 0.448 39.808-0.32a28.928 28.928 0 0 0 18.048-6.528l3.456-3.392 3.072-4.288 20.16-34.304a28.928 28.928 0 0 0 3.648-19.328l-1.28-4.736-2.24-4.928-17.152-29.76a28.8 28.8 0 0 0-25.152-14.4z m-323.84-497.28a190.592 190.592 0 0 1 210.752 41.92 198.656 198.656 0 0 1 42.24 213.888 192.96 192.96 0 0 1-178.368 121.472c-106.24 0-192.384-87.232-192.96-195.2A196.352 196.352 0 0 1 405.44 133.76zM480 198.784a112.64 112.64 0 0 0-80.704 34.176 117.12 117.12 0 0 0-33.088 82.688c0.512 64 51.712 115.392 114.368 115.008 62.72-0.32 113.28-52.288 113.152-116.224-0.128-64-51.072-115.648-113.728-115.648z"></path></symbol><symbol id="icon-line-global_reload" viewBox="0 0 1024 1024"><path d="M577.024 825.408c-102.4 20.8-212.736-8-291.072-86.336a316.416 316.416 0 0 1-24-423.552v59.136a32.064 32.064 0 0 0 64 0V246.784c0-9.6-3.2-17.536-9.6-22.4a31.616 31.616 0 0 0-22.4-9.536h-128c-17.6 0-32 14.4-32 32 0 17.536 14.4 31.936 32 31.936h44.8c-119.936 148.608-108.8 366.016 28.8 505.088 96 95.872 228.736 129.408 351.872 103.872a41.92 41.92 0 0 0 14.4-8c12.8-12.8 12.8-32 0-44.8-6.4-9.6-19.2-12.736-28.8-9.6z m281.6-78.336h-43.264a383.424 383.424 0 0 0-32-506.624c-89.536-89.536-211.072-124.672-327.872-108.736a28.16 28.16 0 0 0-20.8 9.6c-12.8 12.8-12.8 32 0 44.8 8 7.936 19.2 11.136 30.4 7.936 96-14.336 198.4 16 271.936 89.536a316.416 316.416 0 0 1 24 423.552v-59.136a32.064 32.064 0 0 0-64 0v127.872c0 9.6 3.2 17.536 9.6 22.4 6.4 6.4 14.4 9.6 22.4 9.6h128c17.536 0 32-14.464 32-32 0-17.6-12.8-28.8-30.464-28.8z"></path></symbol><symbol id="icon-line-global_translate" viewBox="0 0 1024 1024"><path d="M219.328 624.832c19.904 0 36.416 14.656 39.232 33.792l0.448 5.824v36.48c0 33.92 24.32 62.464 56.768 68.48l7.68 1.024 5.376 0.192h72.96a39.68 39.68 0 0 1 5.888 78.912l-5.888 0.384h-72.96a149.12 149.12 0 0 1-148.864-138.816l-0.384-10.24v-36.416a39.68 39.68 0 0 1 39.68-39.68z m498.688-182.336c7.04 0 13.44 3.392 17.472 8.96l2.496 4.48 145.92 364.608a21.44 21.44 0 0 1-15.68 28.992l-4.224 0.384h-39.36a21.44 21.44 0 0 1-17.408-8.96l-2.496-4.48-36.288-95.936-146.304-1.92-39.168 97.92a21.44 21.44 0 0 1-14.848 12.8l-5.12 0.64h-39.232a21.44 21.44 0 0 1-21.12-25.408l1.152-4.032 146.048-364.608a21.44 21.44 0 0 1 14.784-12.8l5.12-0.64h48.256z m-24.32 116.608l-45.376 102.144 88 4.416-42.624-106.56z m-346.624-408.32a21.44 21.44 0 0 1 21.056 17.28l0.384 4.224-3.2 51.456h127.744c10.368 0 19.072 7.36 21.056 17.152l0.448 4.288V464a21.44 21.44 0 0 1-17.152 20.992l-4.352 0.448-124.544-3.2v91.136a21.44 21.44 0 0 1-17.152 20.992l-4.288 0.448h-36.48a21.44 21.44 0 0 1-21.056-17.088l-0.448-4.352 3.2-87.936H164.544a21.44 21.44 0 0 1-21.056-17.28l-0.384-4.16V245.184a21.44 21.44 0 0 1 17.28-20.992l4.16-0.448 124.544 3.2v-54.656a21.44 21.44 0 0 1 17.28-21.056l4.224-0.384h36.48z m346.816 36.48a149.12 149.12 0 0 1 148.864 138.88l0.32 10.24v36.416a39.68 39.68 0 0 1-78.976 5.824l-0.448-5.824v-36.48a69.696 69.696 0 0 0-61.888-69.248l-7.872-0.448H620.8a39.68 39.68 0 0 1-5.888-78.912l5.888-0.384h72.96z m-471.36 112.64l-3.2 106.176 69.76 3.2V302.912l-66.56-3.008z m145.984 0l-3.2 106.176 69.76 3.2V302.912l-66.56-3.008z"></path></symbol><symbol id="icon-line-global_setUp" viewBox="0 0 1024 1024"><path d="M525.12 354.048c91.392 0 165.568 72.256 165.568 161.408 0 89.216-74.176 161.408-165.568 161.408-91.392 0-165.568-72.192-165.568-161.408 0-89.152 74.176-161.408 165.568-161.408z m0 78.464c-47.168 0-85.376 37.12-85.376 82.944 0 45.824 38.208 83.008 85.376 83.008 47.168 0 85.312-37.184 85.312-83.008 0-45.76-38.144-82.944-85.312-82.944z"></path><path d="M502.464 136.448a47.36 47.36 0 0 1 39.04-2.88l6.272 2.88 311.04 169.152a47.36 47.36 0 0 1 24.32 35.2l0.384 6.4v336.512a47.36 47.36 0 0 1-19.264 38.144l-5.44 3.456-311.04 169.216a47.36 47.36 0 0 1-39.04 2.816l-6.272-2.816-311.04-169.216a47.36 47.36 0 0 1-24.32-35.2l-0.384-6.4V347.2a47.36 47.36 0 0 1 19.264-38.144l5.44-3.456 311.04-169.152z m12.544 83.712l-6.4 2.688L264.96 355.52a34.56 34.56 0 0 0-17.472 24.128l-0.576 6.208v259.2a34.56 34.56 0 0 0 12.8 26.88l5.248 3.456 243.648 132.736a34.56 34.56 0 0 0 26.624 2.688l6.4-2.688 243.648-132.736a34.56 34.56 0 0 0 17.472-24.128l0.576-6.208V385.92a34.56 34.56 0 0 0-12.8-26.88l-5.248-3.456-243.648-132.672a34.56 34.56 0 0 0-21.312-3.904l-5.312 1.216z"></path></symbol><symbol id="icon-line-global_Translation" viewBox="0 0 1024 1024"><path d="M369.984 192.896a179.072 179.072 0 0 1 142.72 70.848l1.472 2.112 1.6-2.112a178.752 178.752 0 0 1 118.144-69.12l12.864-1.28 12.096-0.448h181.76a44.928 44.928 0 0 1 31.808 12.8 44.096 44.096 0 0 1 12.672 24.448l0.576 7.04v496.576c0 37.248-28.544 67.968-65.152 71.872l-7.936 0.448-207.552-2.688a112.064 112.064 0 0 1-91.008 46.464c-32.832 0-63.808-14.272-81.024-36.8l-4.736-7.04H215.936c-37.696 0-68.672-28.16-72.64-64.384l-0.448-7.872v-496.64c0-11.776 4.736-23.104 13.248-31.424a44.8 44.8 0 0 1 24.768-12.288l7.04-0.512h182.08z m0.064 75.264H218.752v462.592h249.536l5.888 4.032 8.064 19.776a34.432 34.432 0 1 0 60.928 5.184l2.688-5.12 8.128-19.84 5.888-3.968h249.728V268.16h-150.848a102.144 102.144 0 0 0-101.568 80.192l-1.472 8.896-2.432 43.712v185.6l-6.4 6.4h-63.168l-6.4-6.4V402.048l-4.48-42.432a101.824 101.824 0 0 0-93.504-91.008l-9.28-0.384z"></path><path d="M611.456 384.96h133.376v62.464H611.456zM611.456 523.776h133.376v62.464H611.456zM96.128 384.96h143.744v62.464H96.128zM96.128 523.776h143.744v62.464H96.128z"></path></symbol><symbol id="icon-line-global_question" viewBox="0 0 1024 1024"><path d="M512 148.032a362.88 362.88 0 0 1 257.408 106.56A362.88 362.88 0 0 1 875.968 512a362.88 362.88 0 0 1-106.56 257.408A362.88 362.88 0 0 1 512 875.968a362.88 362.88 0 0 1-257.408-106.56A362.88 362.88 0 0 1 147.968 512a362.88 362.88 0 0 1 106.624-257.408A362.88 362.88 0 0 1 512 147.968z m0 55.936a306.88 306.88 0 0 0-217.792 90.24A306.88 306.88 0 0 0 203.968 512c0 82.816 32.832 160.384 90.24 217.792A306.88 306.88 0 0 0 512 820.032a306.88 306.88 0 0 0 217.792-90.24A306.88 306.88 0 0 0 820.032 512a306.88 306.88 0 0 0-90.24-217.792A306.88 306.88 0 0 0 512 203.968z m0.128 455.616a42.88 42.88 0 1 1 0 85.888 42.88 42.88 0 0 1 0-85.888z m-0.32-370.24a126.016 126.016 0 0 1 33.472 247.488l-5.504 1.344v40.512a28.032 28.032 0 0 1-24.192 27.776l-3.776 0.256a28.032 28.032 0 0 1-27.712-24.256l-0.256-3.776v-65.28c0-15.488 12.48-28.032 27.968-28.032a70.016 70.016 0 1 0-69.76-75.52l-0.256 5.504a27.968 27.968 0 1 1-56 0c0-69.568 56.448-126.016 126.08-126.016z"></path></symbol><symbol id="icon-line-global_check2" viewBox="0 0 1024 1024"><path d="M879.744 233.344a32 32 0 0 1 48.96 40.832l-3.648 4.48-473.6 473.6a32 32 0 0 1-40.832 3.648l-4.48-3.648-236.8-236.8a32 32 0 0 1 40.832-48.96l4.48 3.648L428.8 684.352l450.944-451.008z"></path></symbol><symbol id="icon-line-global_Subscribe" viewBox="0 0 1024 1024"><path d="M511.808 121.6a42.24 42.24 0 0 1 35.392 18.944l2.88 5.248 90.048 198.4 225.408 27.712a41.984 41.984 0 0 1 34.88 28.544 40.96 40.96 0 0 1-6.976 38.144l-4.736 5.056-164.16 146.944 43.584 219.904a41.152 41.152 0 0 1-16.768 41.408 42.688 42.688 0 0 1-38.784 5.376l-6.336-2.816-191.36-108.672L317.44 854.4a42.688 42.688 0 0 1-45.12-2.56 41.28 41.28 0 0 1-17.472-35.456l0.64-5.952 45.568-215.04-166.08-152.896a41.024 41.024 0 0 1-11.2-43.072 41.856 41.856 0 0 1 28.8-27.136l5.952-1.152 220.032-23.36 94.976-201.984a42.176 42.176 0 0 1 38.336-24.256z m-0.192 123.392L426.816 416.128l-186.368 22.208 140.8 132.288-35.968 181.568 169.6-91.648 165.376 91.648-34.176-187.52 135.744-126.464-191.488-25.664-78.72-167.552z"></path></symbol><symbol id="icon-line-global_colse" viewBox="0 0 1024 1024"><path d="M213.952 163.136l3.712 3.2 294.272 294.272L806.4 166.4a36.288 36.288 0 0 1 54.528 47.616l-3.2 3.712-294.4 294.272 294.4 294.4a36.288 36.288 0 0 1-47.616 54.528l-3.712-3.2L512 563.2l-294.272 294.4a36.288 36.288 0 0 1-54.528-47.616l3.2-3.712L460.608 512 166.4 217.664a36.288 36.288 0 0 1 47.616-54.528z"></path></symbol><symbol id="icon-line-global_exit" viewBox="0 0 1024 1024"><path d="M511.808 80A48 48 0 0 1 518.4 175.552l-6.528 0.448H176v672H512a48 48 0 0 1 47.552 41.472L560 896a48 48 0 0 1-41.472 47.552L512 944H128a48 48 0 0 1-47.552-41.472L80 896V128a48 48 0 0 1 41.472-47.552L128 80h383.808zM670.08 286.08a48 48 0 0 1 62.464-4.672l5.376 4.672 192 192a48 48 0 0 1 4.672 62.464l-4.672 5.376-192 192a48 48 0 0 1-72.512-62.464l4.672-5.376L828.096 512l-158.08-158.08a48 48 0 0 1-4.608-62.464l4.672-5.376z"></path><path d="M896 463.808a48 48 0 0 1 6.528 95.552L896 559.808H341.312a48 48 0 0 1-6.464-95.552l6.464-0.448H896z"></path></symbol><symbol id="icon-line-global_check" viewBox="0 0 1024 1024"><path d="M793.92 286.08a48 48 0 0 1 72.512 62.464l-4.608 5.376-388.288 388.288a48 48 0 0 1-62.464 4.672l-5.44-4.672-194.112-194.112a48 48 0 0 1 62.528-72.576l5.376 4.672 160.128 160.192 354.368-354.304z"></path></symbol><symbol id="icon-line-global_left" viewBox="0 0 1024 1024"><path d="M712.832 904.832a42.688 42.688 0 0 0 4.16-55.552l-4.16-4.8-311.168-311.168 311.168-311.168a42.688 42.688 0 0 0 4.16-55.552l-4.16-4.736a42.688 42.688 0 0 0-55.552-4.16l-4.8 4.16-341.312 341.312a42.688 42.688 0 0 0-4.16 55.552l4.16 4.8 341.312 341.312c16.64 16.64 43.712 16.64 60.352 0z"></path></symbol><symbol id="icon-line-global_up" viewBox="0 0 1024 1024"><path d="M140.48 332.48a42.688 42.688 0 0 1 55.552-4.096l4.8 4.096L512 643.648l311.168-311.168a42.688 42.688 0 0 1 55.552-4.096l4.8 4.096a42.688 42.688 0 0 1 4.096 55.552l-4.096 4.8-341.376 341.312a42.688 42.688 0 0 1-55.552 4.16l-4.736-4.16-341.376-341.312a42.688 42.688 0 0 1 0-60.352z"></path></symbol><symbol id="icon-line-global_arrow" viewBox="0 0 1024 1024"><path d="M866.816 475.264a44.8 44.8 0 0 1 6.08 89.216l-6.08 0.384H128a44.8 44.8 0 0 1-6.08-89.152L128 475.264h738.816z"></path><path d="M626.176 211.84a44.8 44.8 0 0 1 51.648 36.608 309.056 309.056 0 0 0 171.904 226.56 44.8 44.8 0 1 1-38.4 80.96 398.656 398.656 0 0 1-221.824-292.48 44.8 44.8 0 0 1 36.672-51.648z"></path><path d="M824.896 478.08a44.8 44.8 0 1 1 35.392 82.304 309.056 309.056 0 0 0-182.976 234.496 44.8 44.8 0 1 1-88.448-14.08 398.656 398.656 0 0 1 236.032-302.72z"></path></symbol></svg>
+    <div id="game-container">
+        <div id="lane"><div class="pin" data-index="0" style="left: 50%; top: 50px;"></div><div class="pin" data-index="1" style="left: 42%; top: 80px;"></div><div class="pin" data-index="2" style="left: 58%; top: 80px;"></div><div class="pin" data-index="3" style="left: 34%; top: 110px;"></div><div class="pin" data-index="4" style="left: 50%; top: 110px;"></div><div class="pin" data-index="5" style="left: 66%; top: 110px;"></div><div class="pin" data-index="6" style="left: 26%; top: 140px;"></div><div class="pin" data-index="7" style="left: 42%; top: 140px;"></div><div class="pin" data-index="8" style="left: 58%; top: 140px;"></div><div class="pin" data-index="9" style="left: 74%; top: 140px;"></div></div>
+        <div id="ball" style="left: 120px; bottom: 20px;"></div>
+        <div id="score">Total Score: 0</div>
+        <div id="throw-count">Frame: 1 | Roll: 1</div>
+        <div id="frame-score">Frame Score: -</div>
+        <div id="power-meter"><div id="power-bar"></div></div>
+    </div>
+
+    <script>
+        const ball = document.getElementById('ball');
+        const gameContainer = document.getElementById('game-container');
+        const lane = document.getElementById('lane');
+        const scoreElement = document.getElementById('score');
+        const throwCountElement = document.getElementById('throw-count');
+        const frameScoreElement = document.getElementById('frame-score');
+        const powerBar = document.getElementById('power-bar');
+
+        let totalScore = 0;
+        let frameScore = 0;
+        let currentFrame = 1;
+        let currentRoll = 1;
+        let pinsDown = 0;
+        let ballX = 135;
+        let ballY = 450;
+        let ballSpeedX = 0;
+        let ballSpeedY = 0;
+        let isDragging = false;
+        let startX, startY;
+        let power = 0;
+        let isPowerIncreasing = true;
+        let spinDirection = 0;
+        let throwCount = 0;
+
+        function createPins() {
+            const pinPositions = [
+                {x: 50, y: 50},
+                {x: 42, y: 80}, {x: 58, y: 80},
+                {x: 34, y: 110}, {x: 50, y: 110}, {x: 66, y: 110},
+                {x: 26, y: 140}, {x: 42, y: 140}, {x: 58, y: 140}, {x: 74, y: 140}
+            ];
+
+            pinPositions.forEach((pos, index) => {
+                const pin = document.createElement('div');
+                pin.className = 'pin';
+                pin.style.left = pos.x + '%';
+                pin.style.top = pos.y + 'px';
+                pin.dataset.index = index;
+                lane.appendChild(pin);
+            });
+        }
+
+        function resetGame() {
+            totalScore = 0;
+            frameScore = 0;
+            currentFrame = 1;
+            currentRoll = 1;
+            pinsDown = 0;
+            throwCount = 0;
+            resetBall();
+            updateScore();
+            lane.innerHTML = '';
+            createPins();
+        }
+
+        function updateBallPosition() {
+            ballX += ballSpeedX + spinDirection;
+            ballY -= ballSpeedY;
+
+            const laneRect = lane.getBoundingClientRect();
+            const ballRect = ball.getBoundingClientRect();
+
+            if (ballRect.left < laneRect.left || ballRect.right > laneRect.right) {
+                ballSpeedX = -ballSpeedX * 0.5;
+            }
+
+            if (ballRect.top < laneRect.top) {
+                ballSpeedY = -ballSpeedY * 0.5;
+            }
+
+            if (ballRect.bottom > laneRect.bottom) {
+                ballY = laneRect.height - ballRect.height / 2;
+                ballSpeedY = 0;
+            }
+
+            ball.style.left = (ballX - laneRect.left) + 'px';
+            ball.style.bottom = (laneRect.bottom - ballY - ballRect.height / 2) + 'px';
+
+            ballSpeedX *= 0.95;
+            ballSpeedY *= 0.95;
+            spinDirection *= 0.95;
+
+            checkPinCollision();
+
+            if (Math.abs(ballSpeedX) < 0.1 && Math.abs(ballSpeedY) < 0.1) {
+                ballSpeedX = 0;
+                ballSpeedY = 0;
+                spinDirection = 0;
+                setTimeout(() => {
+                    endRoll();
+                }, 1000);
+            } else {
+                requestAnimationFrame(updateBallPosition);
+            }
+        }
+
+        function checkPinCollision() {
+            const pins = document.getElementsByClassName('pin');
+            for (let pin of pins) {
+                const pinRect = pin.getBoundingClientRect();
+                const ballRect = ball.getBoundingClientRect();
+                if (!(
+                    ballRect.right < pinRect.left ||
+                    ballRect.left > pinRect.right ||
+                    ballRect.bottom < pinRect.top ||
+                    ballRect.top > pinRect.bottom
+                )) {
+                    pin.style.transform = 'rotate(45deg) translateY(20px)';
+                    setTimeout(() => pin.remove(), 200);
+                    pinsDown++;
+                }
+            }
+        }
+
+        function resetBall() {
+            const laneRect = lane.getBoundingClientRect();
+            ballX = laneRect.left + laneRect.width / 2;
+            ballY = laneRect.bottom - 30;
+            ball.style.left = (ballX - laneRect.left) + 'px';
+            ball.style.bottom = '20px';
+        }
+
+        function updateScore() {
+            scoreElement.textContent = `Total Score: ${totalScore}`;
+            throwCountElement.textContent = `Frame: ${currentFrame} | Roll: ${currentRoll}`;
+            
+            let frameScoreText = '-';
+            if (pinsDown === 10 && currentRoll === 1) {
+                frameScoreText = 'Strike!';
+            } else if (pinsDown === 10 && currentRoll === 2) {
+                frameScoreText = 'Spare!';
+            } else if (currentRoll === 2) {
+                frameScoreText = pinsDown;
+            }
+            frameScoreElement.textContent = `Frame Score: ${frameScoreText}`;
+        }
+
+        function endRoll() {
+            totalScore += pinsDown;
+            frameScore = pinsDown;
+            pinsDown = 0;
+            if (currentRoll === 1) {
+                currentRoll++;
+            } else {
+                currentFrame++;
+                currentRoll = 1;
+            }
+            throwCount++;
+            if (throwCount >= 5) {
+                alert(`Game Over! Total Score: ${totalScore}`);
+                resetGame();
+                return;
+            }
+            resetBall();
+            updateScore();
+        }
+
+        function launchBall() {
+            ballSpeedX = (Math.random() * 2 - 1) * 10;  // Increased speed
+            ballSpeedY = (Math.random() * 2 + 1) * 10;  // Increased speed
+            spinDirection = (Math.random() - 0.5) * 1.5;  // Slightly increased spin
+            updateBallPosition();
+        }
+
+        function updatePowerMeter() {
+            if (isPowerIncreasing) {
+                power += 2;
+                if (power >= 100) {
+                    isPowerIncreasing = false;
+                }
+            } else {
+                power -= 2;
+                if (power <= 0) {
+                    isPowerIncreasing = true;
+                }
+            }
+            powerBar.style.height = `${power}%`;
+            if (isDragging) {
+                requestAnimationFrame(updatePowerMeter);
+            }
+        }
+
+        ball.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startX = e.clientX - ball.offsetLeft;
+            startY = e.clientY - ball.offsetTop;
+            ball.style.cursor = 'grabbing';
+            updatePowerMeter();
+        });
+
+        document.addEventListener('pointermove', (e) => {
+            if (isDragging) {
+                const laneRect = lane.getBoundingClientRect();
+                const newX = e.clientX - startX - laneRect.left;
+                ball.style.left = Math.max(0, Math.min(newX, laneRect.width - 30)) + 'px';
+            }
+        });
+
+        document.addEventListener('pointerup', (e) => {
+            if (isDragging) {
+                isDragging = false;
+                ball.style.cursor = 'grab';
+                launchBall();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                if (!isDragging) {
+                    isDragging = true;
+                    updatePowerMeter();
+                } else {
+                    isDragging = false;
+                    launchBall();
+                }
+            } else if (e.code === 'KeyQ') {
+                spinDirection -= 0.5;
+            } else if (e.code === 'KeyE') {
+                spinDirection += 0.5;
+            }
+        });
+
+        resetGame();
+    </script>
+
+
+</body><div id="noam-content-root" class="noam-widget"></div></html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Trends Across Ages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #00aaff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .chart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        footer {
+            background-color: #00aaff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Gaming Trends Across Ages</h1>
+    </header>
+
+    <div class="content">
+        <div class="section">
+            <div class="section-title">Overview</div>
+            <p>
+                Gaming has evolved into a universal form of entertainment, captivating people across all age groups. 
+                From children to senior citizens, each age demographic engages with gaming differently, with unique preferences, play styles, and habits.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Age Group Analysis</div>
+            <p>
+                Let's explore the gaming habits of different age groups through some fun data visualizations.
+            </p>
+            <div class="chart">
+                <canvas id="ageChart"></canvas>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Popular Game Genres</div>
+            <p>
+                Different age groups prefer different types of games. Check out the chart below to see which genres are most popular among various age groups.
+            </p>
+            <div class="chart">
+                <canvas id="genreChart"></canvas>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Screen Time Statistics</div>
+            <p>
+                Gaming is a time-intensive activity, but the amount of time people spend gaming varies by age. Here's a breakdown of average weekly screen time for different age groups.
+            </p>
+            <div class="chart">
+                <canvas id="screenTimeChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">Get Ready to Play!</div>
+        <p>
+            Before you jump into the game, we'd love to know more about your gaming habits. Click the button below to take a quick survey and then proceed to the game.
+        </p>
+        <button onclick="window.location.href='survey.html'" style="padding: 10px 20px; font-size: 1.2em; background-color: #00aaff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+            Take the Survey & Play the Game
+        </button>
+    </div>
+    
+
+    <footer>
+        With ❤ from L.A.H.S
+    </footer>
+
+    <script>
+        const ageChartCtx = document.getElementById('ageChart').getContext('2d');
+        const genreChartCtx = document.getElementById('genreChart').getContext('2d');
+        const screenTimeChartCtx = document.getElementById('screenTimeChart').getContext('2d');
+
+        const ageChart = new Chart(ageChartCtx, {
+            type: 'pie',
+            data: {
+                labels: ['6-12 years', '13-18 years', '19-25 years', '26-35 years', '36-50 years', '50+ years'],
+                datasets: [{
+                    label: 'Age Group Distribution',
+                    data: [15, 25, 30, 20, 7, 3],
+                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#ff9f40', '#4bc0c0'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+
+        const genreChart = new Chart(genreChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Action', 'Adventure', 'Puzzle', 'Sports', 'Strategy', 'RPG'],
+                datasets: [{
+                    label: 'Genre Popularity by Age Group',
+                    data: [25, 20, 15, 10, 18, 12],
+                    backgroundColor: '#4bc0c0',
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                }
+            }
+        });
+
+        const screenTimeChart = new Chart(screenTimeChartCtx, {
+            type: 'line',
+            data: {
+                labels: ['6-12 years', '13-18 years', '19-25 years', '26-35 years', '36-50 years', '50+ years'],
+                datasets: [{
+                    label: 'Average Weekly Screen Time (hours)',
+                    data: [12, 20, 25, 18, 10, 5],
+                    borderColor: '#ff6384',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
